@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config/connect.php';
 ?>
 <!DOCTYPE html>
@@ -27,7 +28,9 @@ include 'config/connect.php';
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
         if($data){
           if($data['password'] == $password){
-            echo "<script>alert('SignIn Successful!'); window.location.href='index.php';</script>";
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['logged_in'] = true;
+            echo "<script>alert('SignIn Successful!'); window.location.href='userdashboard.php';</script>";
           }else{
             echo "<script>alert('Invalid Cridential!');</script>";
           }
