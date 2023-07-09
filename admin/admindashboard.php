@@ -20,6 +20,11 @@ if($_SESSION['role'] != 1){
       margin-left: -25px !important;
       margin-right: -25px !important;
     }
+    .home{
+      background: #0d6efd !important;
+      color: white;
+      text-decoration: none;
+    }
   </style>
   <body>
     <div class="row container">

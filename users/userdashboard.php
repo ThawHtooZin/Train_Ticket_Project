@@ -17,6 +17,11 @@ if(empty($_SESSION['username']) && empty($_SESSION['logged_in'])){
       margin-left: -25px !important;
       margin-right: -25px !important;
     }
+    .home{
+      background: #0d6efd !important;
+      color: white;
+      text-decoration: none;
+    }
   </style>
   <body>
     <div class="row container">
