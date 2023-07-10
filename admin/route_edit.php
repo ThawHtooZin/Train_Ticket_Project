@@ -15,7 +15,7 @@ include 'config/connect.php';
     margin-left: -25px !important;
     margin-right: -25px !important;
   }
-  .train{
+  .routes{
     background: #0d6efd !important;
     color: white;
     text-decoration: none;
@@ -27,25 +27,21 @@ include 'config/connect.php';
   <body>
     <?php
     if($_POST){
-      if(empty($_POST['train_name']) || empty($_POST['first_class_seat']) || empty($_POST['second_class_seat'])){
-        if(empty($_POST['train_name'])){
-          $usererror = "The Train Name field is required";
+      if(empty($_POST['trainfrom']) || empty($_POST['trainto'])){
+        if(empty($_POST['trainfrom'])){
+          $fromerror = "The From field is required";
         }
-        if(empty($_POST['first_class_seat'])){
-          $passerror = "The First Class Seats field is required";
-        }
-        if(empty($_POST['second_class_seat'])){
-          $passerror = "The Second Class Seats field is required";
+        if(empty($_POST['trainto'])){
+          $toerror = "The First Class Seats field is required";
         }
       }else{
-        $train_name = $_POST['train_name'];
-        $first_class_seat = $_POST['first_class_seat'];
-        $second_class_seat = $_POST['second_class_seat'];
+        $trainfrom = $_POST['trainfrom'];
+        $trainto = $_POST['trainto'];
         $id = $_GET['id'];
-        $stmt = $pdo->prepare("UPDATE train SET train_name='$train_name', first_class_seats='$first_class_seat', second_class_seats='$second_class_seat' WHERE id=$id");
+        $stmt = $pdo->prepare("UPDATE route SET trainfrom='$trainfrom', trainto='$trainto' WHERE id=$id");
         $stmt->execute();
         if($stmt){
-          echo "<script>alert('Edited Train Successfully!'); window.location.href='train.php'</script>";
+          echo "<script>alert('Edited Route Successfully!'); window.location.href='route.php'</script>";
         }
       }
     }
@@ -66,23 +62,21 @@ include 'config/connect.php';
                 <h3>Update Train</h3>
               </div>
               <div class="col">
-                <a href="train.php" class="btn btn-secondary float-end">Back</a>
+                <a href="route.php" class="btn btn-secondary float-end">Back</a>
               </div>
             </div>
           </div>
           <?php
-          $stmt = $pdo->prepare("SELECT * FROM train");
+          $stmt = $pdo->prepare("SELECT * FROM route");
           $stmt->execute();
           $data = $stmt->fetch(PDO::FETCH_ASSOC);
           ?>
           <div class="card-body">
             <form action="" method="post">
-              <label>Train Name</label>
-              <input type="text" name="train_name" class="form-control" placeholder="Train Name" value="<?php echo $data['train_name']; ?>">
-              <label>First Class Seat</label>
-              <input type="number" name="first_class_seat" class="form-control" placeholder="First Class Seat" value="<?php echo $data['first_class_seats']; ?>">
-              <label>Second Class Seat</label>
-              <input type="number" name="second_class_seat" class="form-control" placeholder="Second Class Seat" value="<?php echo $data['second_class_seats']; ?>">
+              <label>From</label>
+              <input type="text" name="trainfrom" class="form-control" placeholder="From" value="<?php echo $data['trainfrom']; ?>">
+              <label>To</label>
+              <input type="text" name="trainto" class="form-control" placeholder="To" value="<?php echo $data['trainto']; ?>">
               <br>
               <button type="submit" class="btn btn-warning"> Update </button>
             </form>

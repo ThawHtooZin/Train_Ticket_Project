@@ -18,13 +18,13 @@
         </a>
       </li>
       <li>
-        <a href="schduels" class="nav-link text-white schduels">
+        <a href="schduel.php" class="nav-link text-white schduels">
           <i class="bi bi-calendar-event-fill"></i>
           Schduels
         </a>
       </li>
       <li>
-        <a href="routes.php" class="nav-link text-white routes">
+        <a href="route.php" class="nav-link text-white routes">
           <i class="bi bi-bezier2"></i>
           Routes
         </a>
