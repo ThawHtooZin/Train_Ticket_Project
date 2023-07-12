@@ -29,13 +29,13 @@ include 'config/connect.php';
     if($_POST){
       if(empty($_POST['train_name']) || empty($_POST['first_class_seat']) || empty($_POST['second_class_seat'])){
         if(empty($_POST['train_name'])){
-          $usererror = "The Train Name field is required";
+          $trainerror = "The Train Name field is required";
         }
         if(empty($_POST['first_class_seat'])){
-          $passerror = "The First Class Seats field is required";
+          $fccerror = "The First Class Seats field is required";
         }
         if(empty($_POST['second_class_seat'])){
-          $passerror = "The Second Class Seats field is required";
+          $sccerror = "The Second Class Seats field is required";
         }
       }else{
         $train_name = $_POST['train_name'];
@@ -71,7 +71,7 @@ include 'config/connect.php';
             </div>
           </div>
           <?php
-          $stmt = $pdo->prepare("SELECT * FROM train");
+          $stmt = $pdo->prepare("SELECT * FROM train id=$id");
           $stmt->execute();
           $data = $stmt->fetch(PDO::FETCH_ASSOC);
           ?>
@@ -79,10 +79,13 @@ include 'config/connect.php';
             <form action="" method="post">
               <label>Train Name</label>
               <input type="text" name="train_name" class="form-control" placeholder="Train Name" value="<?php echo $data['train_name']; ?>">
+              <p class="text-danger"><?php if(empty($trainerror)){echo $trainerror;} ?></p>
               <label>First Class Seat</label>
               <input type="number" name="first_class_seat" class="form-control" placeholder="First Class Seat" value="<?php echo $data['first_class_seats']; ?>">
+              <p class="text-danger"><?php if(empty($fccerror)){echo $fccerror;} ?></p>
               <label>Second Class Seat</label>
               <input type="number" name="second_class_seat" class="form-control" placeholder="Second Class Seat" value="<?php echo $data['second_class_seats']; ?>">
+              <p class="text-danger"><?php if(empty($sccerror)){echo $sccerror;} ?></p>
               <br>
               <button type="submit" class="btn btn-warning"> Update </button>
             </form>

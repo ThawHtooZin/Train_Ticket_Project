@@ -75,8 +75,10 @@ include 'config/connect.php';
             <form action="" method="post">
               <label>From</label>
               <input type="text" name="trainfrom" class="form-control" placeholder="From" value="<?php echo $data['trainfrom']; ?>">
+              <p class="text-danger"><?php if(empty($fromerror)){echo $fromerror;} ?></p>
               <label>To</label>
               <input type="text" name="trainto" class="form-control" placeholder="To" value="<?php echo $data['trainto']; ?>">
+              <p class="text-danger"><?php if(empty($toerror)){echo $toerror;} ?></p>
               <br>
               <button type="submit" class="btn btn-warning"> Update </button>
             </form>
